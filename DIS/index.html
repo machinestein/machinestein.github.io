@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deep Improvement Supervision</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Noto Sans', sans-serif; background-color: #fcfcfc; }
+    .title { font-family: 'Google Sans', sans-serif; }
+    .publication-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; }
+    .publication-authors { font-size: 1.2rem; color: #4a4a4a; margin-bottom: 1rem; }
+    .author-block { display: inline-block; margin-right: 10px; }
+    .button-container { margin-top: 20px; margin-bottom: 30px; }
+    .button.is-dark { background-color: #363636; border-color: transparent; color: #fff; }
+    .abstract-box { background: #ffffff; padding: 2rem; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
+    .hero-body { padding-bottom: 0; }
+    img { border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-bottom: 10px; }
+    .bibtex { background-color: #f5f5f5; padding: 15px; border-radius: 5px; overflow-x: auto; font-size: 0.9em; }
+    footer { padding: 2rem 1.5rem; background-color: #f5f5f5; margin-top: 4rem; }
+  </style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop has-text-centered">
+      
+      <h1 class="title publication-title">Deep Improvement Supervision</h1>
+      
+      <div class="publication-authors">
+        <span class="author-block">Arip Asadulaev,</span>
+        <span class="author-block">Rayan Banerjee,</span>
+        <span class="author-block">Fakhri Karray,</span>
+        <span class="author-block">Martin Takáč</span>
+      </div>
+      
+      <div class="publication-authors">
+        <span class="author-block">Mohamed bin Zayed University of Artificial Intelligence (MBZUAI)</span>
+      </div>
+
+      <div class="button-container">
+        <a href="paper.pdf" class="button is-dark is-rounded">
+          <span class="icon"><i class="fas fa-file-pdf"></i></span>
+          <span>Paper</span>
+        </a>
+        <a href="https://arxiv.org/abs/2511.16886" class="button is-dark is-rounded">
+          <span class="icon"><i class="ai ai-arxiv"></i></span>
+          <span>arXiv</span>
+        </a>
+        <a href="https://github.com/machinestein" class="button is-dark is-rounded">
+          <span class="icon"><i class="fab fa-github"></i></span>
+          <span>Code</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <img src="static/teaser.png" alt="Discrete Diffusion Blueprint">
+        <h2 class="subtitle is-6">
+          <strong>Figure 1.</strong> Blueprint of the discrete diffusion process on the ARC.
+        </h2>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-centered">Abstract</h2>
+        <div class="content has-text-justified abstract-box">
+          <p>
+            Recently, it was shown that small, looped architectures, such as Tiny Recursive Models (TRMs), can outperform Large Language Models (LLMs) on complex reasoning tasks, including the Abstraction and Reasoning Corpus (ARC). In this work, we investigate a core question: <strong>how can we further improve the efficiency of these methods with minimal changes?</strong>
+          </p>
+          <p>
+            To address this, we frame the latent reasoning of TRMs as a form of classifier-free guidance and implicit policy improvement algorithm. Building on these insights, we propose a novel training scheme, <strong>Deep Improvement Supervision (DIS)</strong>, that provides a target for each loop during training.
+          </p>
+          <p>
+            We demonstrate that our approach significantly enhances training efficiency. Our method reduces the total number of forward passes by <strong>18x</strong> and eliminates halting mechanisms, while maintaining quality comparable to standard TRMs. Notably, we achieve <strong>24% accuracy on ARC-1 with only 0.8M parameters</strong>, outperforming most LLMs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Methodology</h2>
+    <div class="columns is-centered is-vcentered">
+      <div class="column is-two-thirds">
+        <img src="static/method.png" alt="DIS Model Architecture">
+      </div>
+      <div class="column is-one-third">
+        <div class="content has-text-justified">
+          <p>
+            <strong>Deep Improvement Supervision (DIS)</strong> explicitly enforces a positive Advantage Margin at every recursive step by constructing intermediate targets that contract toward the solution.
+          </p>
+          <p>
+            Unlike standard TRMs which only supervise the final output, DIS supervises the "reasoning residual" at each step. [cite_start]We effectively treat the latent reasoning process as a discrete diffusion process[cite: 34].
+          </p>
+          <ul>
+            <li><strong>18x Fewer Passes:</strong> We avoid the large no-grad cycles used in TRM.</li>
+            <li><strong>No Halting Head:</strong> We use a fixed number of improvement steps, simplifying training.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Results</h2>
+    <div class="columns is-centered">
+      <div class="column is-10 has-text-centered">
+        <img src="static/results.png" alt="ARC Results Comparison">
+        <div class="content has-text-justified" style="margin-top: 15px;">
+          <p>
+            [cite_start]We achieve state-of-the-art performance on complex reasoning benchmarks using a much simpler architecture than the TRM[cite: 41]. 
+            [cite_start]With only <strong>0.8M parameters</strong> (Compact model), we achieve <strong>24.0%</strong> on ARC-1, doubling the performance of the baseline TRM-compact (12.0%)[cite: 412].
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-4">BibTeX</h2>
+    <pre class="bibtex"><code>@article{asadulaev2025dis,
+  title={Deep Improvement Supervision},
+  author={Asadulaev, Arip and Banerjee, Rayan and Karray, Fakhri and Tak{\'a}{\v{c}}, Martin},
+  journal={arXiv preprint arXiv:2511.16886},
+  year={2025}
+}</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>
+        <a href="https://github.com/machinestein/machinestein.github.io" class="icon-link">
+          <i class="fab fa-github"></i>
+        </a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
