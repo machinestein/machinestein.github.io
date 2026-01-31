@@ -27,9 +27,7 @@
             margin-bottom: 2px;
         }
 
-        h1 {
-            margin-top: 0;
-        }
+        h1 { margin-top: 0; }
 
         p {
             font-family: "Times New Roman", serif;
@@ -41,28 +39,44 @@
             margin-bottom: 16px;
         }
 
-        em {
-            font-style: italic;
-        }
-
-        strong {
-            font-weight: 700;
-        }
+        em { font-style: italic; }
+        strong { font-weight: 700; }
 
         a {
             color: rgb(0, 0, 0);
             text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 2px;
         }
-
-        a:hover {
-            text-decoration: none;
-        }
+        a:hover { text-decoration: none; }
 
         .container {
             max-width: 672px;
             margin: 70px 0px 15px;
             padding: 0px;
             width: 650px;
+        }
+
+        /* --- Diagram block (flex layout for side-by-side) --- */
+        figure.repin {
+            margin: 18px 0 22px;
+            padding: 0;
+            display: flex;
+            align-items: center; /* Vertically align text and chart */
+            justify-content: space-between;
+            gap: 20px;
+        }
+        figure.repin svg {
+            display: block;
+            width: 260px;
+            height: auto;
+            flex-shrink: 0; /* Prevent SVG from shrinking */
+        }
+        figure.repin figcaption {
+            margin-top: 0; /* Reset margin since it's side-by-side */
+            font-size: 15px;
+            line-height: 21px;
+            flex-grow: 1; /* Allow text to take remaining space */
         }
 
         @media (max-width: 700px) {
@@ -72,10 +86,18 @@
                 margin: 20px auto;
                 padding: 0px 20px;
             }
-            
             .container {
                 width: auto;
                 margin: 20px 0px 15px;
+            }
+            figure.repin {
+                flex-direction: column-reverse; /* Chart on top, text below on mobile */
+                align-items: flex-start;
+            }
+            figure.repin svg {
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto 15px auto;
             }
         }
     </style>
@@ -83,26 +105,73 @@
 <body>
     <div class="container">
         <h1>Arip Asadulaev</h1>
-        
-        <p><em>Postdoc. See my papers <a href="https://scholar.google.com/citations?user=wcdrgdYAAAAJ&hl=en">here</a>.</em></p>
-        
-        <p><strong>Working on reinforcement learning and generative models.</strong></p>
-        
-        <h4>Contributions:</h4>
-        
+
+        <!-- Repin quote + diagram -->
+        <figure class="repin" aria-label="Quality vs Complexity learning loop diagram">
+            <!-- Swapped order: Text first (left), SVG second (right) -->
+            <figcaption>
+                <em>
+                    A principle I first encountered as a student: 
+                    you begin by making work that is bad and simple; 
+                    then bad and complex; then good and complex; and finally, good and simple. 
+                    This quote is often attributed to the painter Ilya Repin. 
+                    I’ve found this pattern shows up far beyond painting (research, engineering, writing), and I judge ideas through this prism.
+                </em>
+            </figcaption>
+
+            <svg viewBox="0 0 300 230" role="img" aria-labelledby="repinTitle repinDesc">
+                <title id="repinTitle">Quality versus Complexity: a learning loop</title>
+                <desc id="repinDesc">
+                    Axes: Complexity increases to the right, Quality increases upward.
+                    Corners: bad & simple, bad & complex, good & complex, good & simple.
+                    Path: bad-simple to bad-complex to good-complex to good-simple.
+                </desc>
+
+                <defs>
+                    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5"
+                            markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                        <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"></path>
+                    </marker>
+                </defs>
+
+                <!-- Axes (X = Complexity, Y = Quality) -->
+                <!-- Moved X-axis slightly down (185 -> 195) to create more breathing room -->
+                <line x1="45" y1="195" x2="280" y2="195" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow)"/>
+                <line x1="45" y1="195" x2="45" y2="35"  stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+                <text x="162" y="224" text-anchor="middle" font-size="14" fill="currentColor">Complexity</text>
+                <text x="18" y="110" text-anchor="middle" font-size="14" fill="currentColor" transform="rotate(-90 18 110)">Quality</text>
+
+                <!-- Progress path: bad&simple -> bad&complex -> good&complex -> good&simple -->
+                <line x1="80"  y1="170" x2="250" y2="170" stroke="currentColor" stroke-width="1.2" marker-end="url(#arrow)"/>
+                <line x1="250" y1="170" x2="250" y2="60"  stroke="currentColor" stroke-width="1.2" marker-end="url(#arrow)"/>
+                <line x1="250" y1="60"  x2="80"  y2="60"  stroke="currentColor" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+                <!-- Corner labels -->
+                <!-- Moved bottom labels up (y=185 -> y=165) so they sit above the path line and clear of the axis -->
+                <text x="80"  y="165" font-size="12" fill="currentColor">bad &amp; simple</text>
+                <text x="250" y="165" font-size="12" fill="currentColor" text-anchor="end">bad &amp; complex</text>
+                
+                <text x="250" y="50"  font-size="12" fill="currentColor" text-anchor="end">good &amp; complex</text>
+                <text x="80"  y="50"  font-size="12" fill="currentColor">good &amp; simple</text>
+            </svg>
+        </figure>
+
+        <p><em>Postdoc. Working on reinforcement learning and generative models. See my papers <a href="https://scholar.google.com/citations?user=wcdrgdYAAAAJ&hl=en">here</a>.</em></p>
+
+        <h3>Contributions</h3>
+
         <p><strong>Theoretical:</strong> Advanced the <a href="https://openreview.net/forum?id=gIiz7tBtYZ">understanding</a> of optimal transport in machine learning, specifically by <a href="https://proceedings.neurips.cc/paper_files/paper/2024/file/df54302388bbc145aacaa1a54a4a5933-Paper-Conference.pdf">rethinking</a> its application to reinforcement learning.</p>
         <p><strong>Engineering:</strong> Designed <a href="https://pubs.acs.org/doi/full/10.1021/acs.jcim.7b00690">neural computer architectures</a> that generate molecules with favorable <a href="https://pubs.acs.org/doi/full/10.1021/acs.molpharmaceut.7b01137">pharmacokinetics</a>. These models were later <a href="https://www.nature.com/articles/s41587-019-0224-x">validated in real-world applications</a>.</p>
         <p><strong>Practical:</strong> Developed a <a href="https://docs.cow.fi/cow-protocol/concepts/introduction/solvers">CowSwap solver</a> and built various AI layers to optimize token swaps, asset bridging, and other decentralized finance operations.</p>
         <p><strong>Education:</strong> Created and taught several courses on reinforcement learning and deep generative models, covering a range of topics from GANs to flow-matching.</p>
-        
-        
+
         <p>Open to discussing new ideas and potential collaborations. Feel free to connect.</p>
-        
-        <p>Social: @machinestein</p>
+
+        <p>Social: <a href="#" aria-label="Social handle">@machinestein</a></p>
         <p><a href="mailto:arip.asadulaev@mbzuai.ac.ae">Contact</a></p>
-        
-        <p><em>Last update: June 11, 2025</em></p>
+
+        <p><em>Last update: Jan 31, 2026</em></p>
     </div>
 </body>
 </html>
-
