@@ -13,8 +13,8 @@
             background-color: white;
             margin: 50px auto;
             padding: 0px 10px;
-            max-width: 800px;
-            width: 800px;
+            max-width: 600px;
+            width: 600px;
         }
 
         h1, h2 {
@@ -72,10 +72,10 @@
         a:hover { text-decoration: none; }
 
         .container {
-            max-width: 800px;
+            max-width: 600px;
             margin: 70px 0px 15px;
             padding: 0px;
-            width: 800px;
+            width: 600px;
         }
 
         /* --- Diagram block (flex layout for side-by-side) --- */
@@ -89,7 +89,7 @@
         }
         figure.repin svg {
             display: block;
-            width: 340px; 
+            width: 280px; /* Reduced width to fit narrower layout */
             height: auto;
             flex-shrink: 0; /* Prevent SVG from shrinking */
         }
@@ -100,7 +100,8 @@
             flex-grow: 1; /* Allow text to take remaining space */
         }
 
-        @media (max-width: 850px) {
+        /* Adjusted breakpoint for narrower desktop width */
+        @media (max-width: 650px) {
             body {
                 width: auto;
                 max-width: 90%;
@@ -130,11 +131,10 @@
         <figure class="repin" aria-label="Quality vs Complexity learning loop diagram">
             <figcaption>
                 <em>
-                    A principle I first encountered as a student: 
-                    you begin by making work that is bad and simple; 
+                    You begin by making work that is bad and simple; 
                     then bad and complex; then good and complex; and finally, good and simple. 
                     This quote is often attributed to the painter Ilya Repin. 
-                    I’ve found this pattern shows up far beyond painting (research, engineering, writing), and I judge ideas through this prism.
+                    I’ve found this pattern shows up far beyond painting, and I judge ideas through this prism.
                 </em>
             </figcaption>
 
@@ -177,11 +177,11 @@
 
         <h3>Good & Simple</h3>
         <p><a href="https://arxiv.org/pdf/2602.01962">Zero-Shot Off-Policy Learning</a>.</p>
-       
+        
         <h3>Good & Complex</h3>
         <p><a href="https://arxiv.org/pdf/2511.16886">Your Latent Reasoning is Secretly Policy Improvement Operator</a>.</p>
         <p><a href="https://arxiv.org/pdf/2510.11955">Y-Shaped Generative Flows</a>.</p>
-       
+        
         <h3>Bad & Complex</h3>
         <p><a href="https://proceedings.neurips.cc/paper_files/paper/2024/file/df54302388bbc145aacaa1a54a4a5933-Paper-Conference.pdf">Rethinking Optimal Transport in Offline Reinforcement Learning</a>.</p>
         <p><a href="https://arxiv.org/pdf/2205.15403">Neural Optimal Transport with General Cost Functionals</a>.</p>
