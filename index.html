@@ -5,34 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arip Asadulaev</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Newsreader:ital,opsz,wght@1,6..72,400&display=swap');
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            /* Corporate Y-Combinator style font stack and background */
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             font-size: 16px;
             line-height: 1.5;
             color: rgb(0, 0, 0);
-            background-color: white;
-            margin: 50px auto;
-            padding: 0px 10px;
-            max-width: 600px;
-            width: 600px;
+            background-color: #F6F6EF; /* Classic YC/HN off-white background */
+            margin: 0;
+            padding: 0;
         }
 
         h1, h2 {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 700;
+            letter-spacing: -0.03em;
             line-height: 1.3;
             color: rgb(0, 0, 0);
             margin-top: 20px;
             margin-bottom: 2px;
         }
 
-        h1 { margin-top: 0; }
+        h1 { 
+            margin-top: 0; 
+            font-size: 32px; /* Decreased header size */
+            margin-bottom: 24px;
+        }
 
         h3 {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            font-size: 18px;
-            font-weight: 700;
+            font-size: 20px; /* Increased for better proportionality */
+            font-weight: 600;
+            letter-spacing: -0.01em;
             line-height: 1.4;
             color: rgb(0, 0, 0);
             margin-top: 24px;
@@ -40,7 +45,6 @@
         }
 
         h4 {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             font-size: 16px;
             font-weight: 700;
             line-height: 1.4;
@@ -51,7 +55,6 @@
         }
 
         p {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             font-size: 16px;
             font-weight: 400;
             line-height: 1.6;
@@ -60,7 +63,19 @@
             margin-bottom: 12px;
         }
 
-        em { font-style: italic; }
+        p.bio {
+            font-size: 18px; /* Matched size with the quote */
+            line-height: 1.4;
+            margin-bottom: 32px;
+        }
+
+        em { 
+            /* YC-style elegant serif for italics */
+            font-family: 'Newsreader', Georgia, serif;
+            font-style: italic;
+            font-size: 1.05em; /* Slight bump so serif matches sans-serif height */
+            letter-spacing: -0.01em;
+        }
         strong { font-weight: 700; }
 
         a {
@@ -72,45 +87,46 @@
         a:hover { text-decoration: none; }
 
         .container {
+            max-width: 750px; /* Expanded for wider header and image */
+            margin: 70px auto 30px auto;
+            padding: 0px 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Restrict paragraphs and subheadings to maintain readable line lengths */
+        .container > h3,
+        .container > h4,
+        .container > p {
             max-width: 600px;
-            margin: 70px 0px 15px;
-            padding: 0px;
-            width: 600px;
         }
 
         /* --- Diagram block (flex layout for side-by-side) --- */
         figure.repin {
-            margin: 18px 0 22px;
+            margin: 20px 0 40px;
             padding: 0;
             display: flex;
             align-items: center; /* Vertically align text and chart */
             justify-content: space-between;
-            gap: 20px;
+            gap: 40px;
         }
         figure.repin svg {
             display: block;
-            width: 280px; /* Reduced width to fit narrower layout */
+            width: 320px; /* Decreased diagram size */
             height: auto;
             flex-shrink: 0; /* Prevent SVG from shrinking */
         }
         figure.repin figcaption {
             margin-top: 0; /* Reset margin since it's side-by-side */
-            font-size: 15px;
+            font-size: 18px; /* Slightly decreased quote text size */
             line-height: 1.5;
             flex-grow: 1; /* Allow text to take remaining space */
         }
 
         /* Adjusted breakpoint for narrower desktop width */
-        @media (max-width: 650px) {
-            body {
-                width: auto;
-                max-width: 90%;
-                margin: 20px auto;
-                padding: 0px 20px;
-            }
+        @media (max-width: 800px) {
             .container {
-                width: auto;
-                margin: 20px 0px 15px;
+                margin: 40px auto;
             }
             figure.repin {
                 flex-direction: column-reverse; /* Chart on top, text below on mobile */
@@ -118,8 +134,8 @@
             }
             figure.repin svg {
                 width: 100%;
-                max-width: 350px;
-                margin: 0 auto 15px auto;
+                max-width: 320px;
+                margin: 0 auto 20px auto;
             }
         }
     </style>
@@ -173,7 +189,7 @@
                 <text x="70"  y="50"  font-size="14" fill="currentColor" style="font-family: inherit;">good &amp; simple</text>
             </svg>
         </figure>
-        <p><em>Working on reinforcement learning and generative models.</em></p>
+        <p class="bio"><em>Working on reinforcement learning and generative models.</em></p>
 
         <h3>Good & Simple</h3>
         <p><a href="https://arxiv.org/pdf/2602.01962">Zero-Shot Off-Policy Learning</a>.</p>
@@ -190,7 +206,7 @@
         <p><a href="https://proceedings.mlr.press/v232/asadulaev23a/asadulaev23a.pdf">A Minimalist Approach for Domain Adaptation with Optimal Transport</a>.</p>
         <p><a href="https://ieeexplore.ieee.org/abstract/document/9256259">Exploring and Exploiting Conditioning of Reinforcement Learning Agents</a>.</p>
         
-        <p><em>See all my papers <a href="https://scholar.google.com/citations?user=wcdrgdYAAAAJ&hl=en">here</a>.</em></p>
+        <p class="bio"><em>See all my papers <a href="https://scholar.google.com/citations?user=wcdrgdYAAAAJ&hl=en">here</a>.</em></p>
 
         <h3>Contribution beyond research:</h3>
 
@@ -201,7 +217,7 @@
         <p>Open to discussing new ideas and potential collaborations. Feel free to <a href="mailto:arip.asadulaev@mbzuai.ac.ae">contact</a>.</p>
 
         <p>Social: <a href="#" aria-label="Social handle">@machinestein</a></p>
-        <p><em>Last update: Feb 6, 2026</em></p>
+        <p class="bio"><em>Last update: Feb 20, 2026</em></p>
     </div>
 </body>
 </html>
